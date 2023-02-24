@@ -1,0 +1,46 @@
+class office_stats:
+    organisation_name = "BitSquad Softwware PVT ltd"
+    def __init__(self):
+        self.employ_count = 40
+        self.departments_data =  ["automation","development","testing"]
+        self.languages_data  = ["python","java",".net","power app"]
+
+    def departments(self,department,employee_name, id, gender, mobile_number):
+        self.department = department.lower() if department.lower().strip() in self.departments_data else "Department not present here!!!!"
+        self.emp_name = employee_name
+        self.emp_id = id
+        self.gender = gender
+        self.mobile_number  = mobile_number
+        return [office_stats.organisation_name,self.department, self.emp_name, self.emp_id, self.gender, self.mobile_number]
+    
+class language_stats(office_stats):
+    def departments(self, language, department, employee_name, id, gender, mobile_number):
+        self.department = super().departments(department, employee_name, id, gender, mobile_number)
+        self.language = language.lower() if language.lower().strip() in self.languages_data else "Language is not present here!!!"
+        self.department.append(language)
+        return self.department
+    
+    def Info(self, lan , department, employee_name, id, gender, mobile_number):
+        self.lan_data = self.departments(lan, department, employee_name, id, gender, mobile_number)
+        return self.lan_data
+l =language_stats()
+data_dict = {}
+i=1
+while True:
+    lan = input("Please enter the valid language:")
+    department = input("Please enter the valid department:")
+    employee_name = input("Please enter the valid employee_name:")
+    id = input("Please enter the valid id :")
+    gender = input("Please enter the valid gender (M/F):")
+    mobile_number = input("Please enter the valid monile number:")
+    data = l.Info(lan, department, employee_name, id, gender, mobile_number)
+    data_dict[i] = data
+    print(data_dict)
+    user_input = input("Want to enter more data (yes/no):")
+    if user_input.lower().strip() == 'yes':
+        i+=1
+        continue
+    else:
+        break
+print(data_dict)
+

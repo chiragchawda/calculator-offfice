@@ -1,0 +1,1 @@
+self.department = department.lower() if department.lower().strip() in self.departments_data else "Department not present here!!!!"
